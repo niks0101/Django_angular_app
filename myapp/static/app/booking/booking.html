@@ -1,0 +1,118 @@
+<div id="booking" class="container">
+
+<form name="form"  ng-submit="bookRoom()">
+    <div class="row">
+        <div class="col-md-11 col-md-offset-1"> 
+                <!--  General -->
+                <div class="form-group">
+                    <h2 class="heading">Booking & contact</h2>
+                    <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                        <input type="text" name="name" id="name" class="form-control" ng-model="user.name" required placeholder="Name" />
+                        <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.email.$invalid &&  form.email.$dirty}">
+                        <input type="email"  ng-model="user.email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" value="" required>
+                        <p ng-show="form.email.$error.required && form.email.$dirty" class="help-block">Your email is required.</p>
+                        <p ng-show="form.email.$error.pattern && form.email.$dirty" class="help-block">You email is invalid.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': form.phno.$dirty && form.phno.$error.required}">
+                        <input type="tel" name="phno" id="phno" class="form-control" ng-model="user.phno" required placeholder="Phone number" ng-pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/" />
+                        <span ng-show="form.phno.$dirty && form.phno.$error.required" class="help-block">Phone number is required.</span>
+                        <p ng-show="form.phno.$error.pattern && form.phno.$dirty" style="color: red">Phone number should be numeric.</p>
+                    </div>
+                    <div class="grid">
+                        <div class="col-3-3">
+                                <div class="form-group" ng-class="{ 'has-error': form.street.$dirty && form.street.$error.required }">
+                                    <input type="tel" name="street" id="street" class="form-control" ng-model="user.street" required placeholder="Street" />
+                                    <span ng-show="form.street.$dirty && form.street.$error.required" class="help-block">Street is required</span>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-2-3">
+                            <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+                                <input type="tel" name="city" id="city" class="form-control" ng-model="user.city" required placeholder="City" />
+                                <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">City is required</span>
+                            </div>
+                        </div>
+                        <div class="col-1-3">
+                            <div class="form-group" ng-class="{ 'has-error': form.postalcode.$dirty && form.postalcode.$error.required }">
+                                <input type="tel" name="postalcode" id="postalcode" class="form-control" ng-model="user.postalcode" required placeholder="Postal Code" />
+                                <span ng-show="form.postalcode.$dirty && form.postalcode.$error.required" class="help-block">Postal Code is required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <div class="form-group" ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
+                            <input type="tel" name="country" id="country" class="form-control" ng-model="user.country" required placeholder="Country" />
+                            <span ng-show="form.country.$dirty && form.country.$error.required" class="help-block">Country is required</span>
+                        </div>
+                    </div>
+                </div>
+    <!--  Details -->
+    <div class="form-group">
+        <h2 class="heading">Details</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group"  ng-class="{ 'has-error': form.arrive.$dirty && form.arrive.$error.required }">
+                            <input type="date" id="arrive" name="arrive" ng-model="user.arrive" value="<?php echo date('Y-m-d'); ?>" required />
+                            <label for="arrive" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Arrive</label>
+                            <span ng-show="form.arrive.$dirty && form.arrive.$error.required" class="help-block">Arrive date is required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': form.depart.$dirty && form.depart.$error.required }">
+                            <input type="date" id="depart" name="depart" ng-model="user.depart" value="<?php echo date('Y-m-d'); ?>" required />
+                            <label for="depart" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Depart</label>
+                            <span ng-show="form.depart.$dirty && form.depart.$error.required" class="help-block">Depart date is required</span>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="grid">
+            <div class="col-1-3 col-1-3-sm">
+                <div class="form-group">
+                    <label for="people">People:</label>
+                    <select ng-model="user.people" class="form-control" id="people">
+                        <option>1 Person</option>
+                        <option>2 Person</option>
+                        <option>3 Person</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-1-3 col-1-3-sm">
+                <div class="form-group">
+                    <label for="room">Room:</label>
+                    <select  ng-model="user.roomtype" class="form-control" id="room">
+                        <option>With Bathroom</option>
+                        <option>Without Bathroom</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-1-3 col-1-3-sm">
+                <div class="form-group">
+                    <label for="bedding">Bedding:</label>
+                    <select ng-model="user.bedsystem" class="form-control" id="bedding">
+                        <option>Single Bed</option>
+                        <option>Couple Bed</option>
+                        <option>Double Bed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <p class="info-text">Please describe your needs e.g. Extra beds, children's cots</p>
+            <br>
+            <div class="form-group" ng-class="{ 'has-error': form.comments.$dirty && form.comments.$error.required }">
+                <textarea name="comments" name="comments" id="comments" class="form-control" ng-model="user.comments" required placeholder="Comments" />
+                <span ng-show="form.comments.$dirty && form.comments.$error.required" class="help-block">Comments is required</span>
+            </div>
+            <button type="submit" ng-disabled="form.$invalid" value="Submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </div>
+        </div>
+    </div> <!-- /.form-group -->
+</form>
+</div>

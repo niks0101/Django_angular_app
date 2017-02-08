@@ -1,0 +1,53 @@
+<div id="signup">
+  <div id="signupform">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-login">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-12">
+                  <label class="text-center">Register
+                  </label>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <form id="register-form"  novalidate name="registerform" ng-submit="register()" role="form">
+                    <div class="form-group" ng-class="{ 'has-error': registerform.username.$invalid &&  registerform.username.$dirty}">
+                      <input type="text" ng-model="user.username" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
+                      <p  ng-show="registerform.username.$error.required && registerform.username.$dirty" class="help-block">You username is required.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': registerform.email.$invalid &&  registerform.email.$dirty}">
+                      <input type="email"  ng-model="user.email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" value="" required>
+                      <p ng-show="registerform.email.$error.required && registerform.email.$dirty" class="help-block">You email is required.</p>
+
+                      <p ng-show="registerform.email.$error.pattern" class="help-block">You email is invalid.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': registerform.password.$invalid &&  registerform.password.$dirty}">
+                      <input type="password" ng-model="user.password" password-match name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+                      <p ng-show="registerform.password.$error.required && registerform.password.$dirty" class="help-block">You password is required.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': registerform.confirmpassword.$invalid &&  registerform.confirmpassword.$dirty}">
+                      <input type="password" ng-model="user.confirmpassword" password-match name="confirmpassword" id="confirm-password" tabindex="2" class="form-control" required placeholder="Confirm Password">
+                      <p ng-show="registerform.confirmpassword.$error.required && registerform.confirmpassword.$dirty" class="help-block">You confirm password is required.</p>
+                      <p style="color: red" ng-show="!passwordmatch && registerform.confirmpassword.$dirty" class="help-block">Your password and confirm password doesn't match.</p>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" name="register-submit" id="register-submit" ng-disabled="registerform.$invalid || !passwordmatch" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <a href="#!/login" class="btn btn-link">Cancel</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

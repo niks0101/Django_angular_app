@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="headerCtrl">
+    <div class="navbar-header"><a class="navbar-brand" href="#!/">Audit</a>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li ng-class="{'active' : activetab == '\\gallery'}"><a href="#!/gallery">Gallery</a></li>
+            <li ng-class="{'active' : activetab == '\\booking'}"><a href="#!/booking">Booking</a></li>
+            <li ng-class="{'active' : activetab == '\\activites'}"><a href="#!/activity">Activities</a></li>
+            <li ng-class="{'active' : activetab == '\\contactus'}"><a  href="#!/contact">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-hide="globals.currentUser">
+            <li><a href="#!/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="globals.currentUser">
+            <li  class='userloggedin'>
+                <a  href="#!/user"> Welcome <b><i>{{globals.currentUser.username}}</i></b></a>
+            </li>
+            <li><a  href="#!/login" ng-click="globals.currentUser = null">Log Out </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container"  ng-if="flash" >
+    <div class="col-sm-8 col-sm-offset-2">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+</div>
+<div ng-view></div>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<!--<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>-->
+<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!--<script src="bower_components/lodash/dist/lodash.js"></script>-->
+
+<script src="app.js"></script>
+
+<script src="login/services/loginService.js"></script>
+<script src="login/login.js"></script>
+<script src="signup/directives/passwordmatch.js"></script>
+<script src="signup/services/signupservice.js"></script>
+<script src="signup/signup.js"></script>
+<script src="gallery/gallery.js"></script>
+<script src="booking/booking.js"></script>
+<script src="contact/directives/mapsDirective.js"></script>
+<script src="contact/contact.js"></script>
+<script src="project/project.js"></script>
+<script src="home/home.js"></script>
+
+<script src="app-services/authentication.service.js"></script>
+<script src="app-services/base.service.js"></script>
+<script src="app-services/flash.service.js"></script>
+
+<!-- Real user service that uses an api -->
+<!-- <script src="app-services/user.service.js"></script> -->
+
+<!-- Fake user service for demo that uses local storage -->
+<script src="app-services/user.service.local-storage.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

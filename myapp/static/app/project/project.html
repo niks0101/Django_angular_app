@@ -1,0 +1,52 @@
+<div class="panel-heading">[[project.project_title]]</div>
+<div id="sidebar-wrapper" class="sidebar-toggle">
+    <ul class="sidebar-nav">
+        <li ng-repeat="main_questions in data track by $index">
+            <a title="[[ main_questions.questionset_title ]]" ng-click="showQuestions(main_questions.id)">Q: [[ main_questions.questionset_title ]]</a>
+    </ul>
+</div>
+<div class="col-md-10 col-md-offset-2">
+    <h2>Project Details</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">[[project.project_title]]</div>
+        <div class="panel-body">
+            <div class="container">
+                <h3>Questions</h3>
+                <div class="panel-group" id="questions">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#questions"
+                             data-target="#question[[$index]]">
+                            <h4 class="panel-title">
+                                <a href="">Q: [[ main_question.questionset_title ]]</a>
+                            </h4>
+                        </div>
+                        <div id="question[[$index]]" class="panel-collapse collapse" style="">
+                            <div class="panel-body" ng-repeat="question in main_question.questions">
+                                <h4 class="panel-title" style="margin-bottom: 20px">
+                                    <a href="">Q: [[ question.question_title ]]</a>
+                                </h4>
+                                <div ng-repeat="a in question.answers_options">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-model="a.check_val" name="a[[$index]]">[[a.answer]]</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment"
+                                          ng-model="main_question.comment"></textarea>
+                            </div>
+
+                            <input type="file" id="file1" name="file" multiple
+                                ng-files="getTheFiles($files)" />
+
+{#                            <input type="button" ng-click="uploadFiles()" value="Upload" />#}
+                            <button type="submit" class="btn btn-primary" ng-click="submitForm(main_question.id)">Submit</button>
+                        </div>
+                    </div>
+
+
+                </div><!--/panel-group-->
+            </div><!--/container--></div>
+    </div>
+</div>

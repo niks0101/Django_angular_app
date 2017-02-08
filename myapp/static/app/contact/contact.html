@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <form class="form-horizontal" name="contactform" novalidate ng-submit="submitContactForm()">
+                    <fieldset>
+                        <legend class="text-center header">Contact us</legend>
+                        <div class="form-group" ng-class="{ 'has-error': contactform.firstname.$invalid &&  contactform.firstname.$dirty}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="firstname" name="firstname" type="text" placeholder="First Name" ng-model="user.firstname" class="form-control" required>
+                                <p  ng-show="contactform.firstname.$error.required && contactform.firstname.$dirty" class="help-block">You First name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactform.lastname.$invalid &&  contactform.lastname.$dirty}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="lastname" name="lastname" type="text" placeholder="Last Name" ng-model="user.lastname" class="form-control" required>
+                                <p  ng-show="contactform.lastname.$error.required && contactform.lastname.$dirty" class="help-block">You Last name is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': contactform.email.$invalid &&  contactform.email.$dirty}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="email" ng-model="user.email" name="email" type="text" placeholder="Email Address" class="form-control" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                                <p ng-show="contactform.email.$error.required && contactform.email.$dirty" class="help-block">You email is required.</p>
+
+                                <p ng-show="contactform.email.$error.pattern" class="help-block">You email is invalid.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': contactform.phno.$invalid &&  contactform.phno.$dirty}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="phone" name="phno" type="text" ng-model="user.phno" placeholder="Phone" class="form-control"  required ng-pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/" />
+                                <p ng-show="contactform.phno.$error.required && contactform.phno.$dirty" class="help-block">You Phno is required.</p>
+
+                                <p ng-show="contactform.phno.$error.pattern" class="help-block">You phno is invalid.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': contactform.message.$invalid &&  contactform.message.$dirty}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <textarea class="form-control" id="message" ng-model="user.message" required name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+
+                                <p ng-show="contactform.message.$error.required && contactform.message.$dirty" class="help-block">You message is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" ng-disabled="contactform.$invalid" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <div class="panel panel-default">
+                    <div class="text-center header">Our Office</div>
+                    <div class="panel-body text-center">
+                        <h4>Address</h4>
+                        <div>
+                           Sr no 124<br />
+                           Laxminarayan nagar lane no 5<br />
+                            #9552449147<br />
+                            test@test.com<br />
+                        </div>
+                        <hr />
+                        <div id="map1" class="map">
+                            <maps-directive latitude="18.642574" longitude="73.875976"></maps-directive>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

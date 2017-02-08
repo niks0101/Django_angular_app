@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <title>AngularJS Routes example</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="{% static "bower_componentsss/html5-boilerplate/dist/css/normalize.css" %}">
+    <link href="{% static "bower_componentsss/html5-boilerplate/dist/css/main.css" %}">
+    <link rel="stylesheet" href="{% static "app/app.css" %}">
+    <script src="{% static "bower_componentsss/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js" %}"></script>
+
+    <!-- Boostrap files end here -->
+
+    <script src="{% static "bower_components/angular/angular.js" %}"></script>
+    <script src="{% static "bower_components/angular-route/angular-route.js" %}"></script>
+    <script src="{% static "bower_components/angular-cookies/angular-cookies.js" %}"></script>
+    <script src="{% static "bower_components/angular-translate/angular-translate.js" %}"></script>
+    <script src="{% static "bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js" %}"></script>
+    <script src="{% static "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js" %}"></script>
+    <script src="{% static "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"%}"></script>
+    <script src="{% static "bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js" %}"></script>
+
+
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script src="{% static "app/app.js" %}"></script>
+
+    <script src="{% static "app/login/services/loginService.js" %}"></script>
+    <script src="{% static "app/login/login.js" %}"></script>
+    <script src="{% static "app/signup/directives/passwordmatch.js" %}"></script>
+    <script src="{% static "app/signup/services/signupservice.js" %}"></script>
+    <script src="{% static "app/signup/signup.js" %}"></script>
+    <script src="{% static "app/project/directive/fileUpload.directive.js" %}"></script>
+    <script src="{% static "app/project/project.js" %}"></script>
+    <script src="{% static "app/gallery/gallery.js" %}"></script>
+    <script src="{% static "app/booking/booking.js" %}"></script>
+    <script src="{% static "app/contact/directives/mapsDirective.js" %}"></script>
+    <script src="{% static "app/contact/contact.js" %}"></script>
+    <script src="{% static "app/home/home.js" %}"></script>
+
+    <script src="{% static "app/app-services/authentication.service.js" %}"></script>
+    <script src="{% static "app/app-services/project.service.js" %}"></script>
+    <script src="{% static "app/app-services/base.service.js" %}"></script>
+    <script src="{% static "app/app-services/flash.service.js" %}"></script>
+    <script src="{% static "app/app-services/fileupload.service.js" %}"></script>
+    <script src="{% static "app/app-services/LocaleService.js" %}"></script>
+    <script src="{% static "app/app-directives/LanguageSelectDirective.js" %}"></script>
+
+    <!-- Real user service that uses an api -->
+    <!-- <script src="app-services/user.service.js" %"}></script> -->
+
+    <!-- Fake user service for demo that uses local storage -->
+    <script src="{% static "app/app-services/user.service.local-storage.js" %}"></script>
+    <script src="{% static "app/components/version/version.js" %}"></script>
+    <script src="{% static "app/components/version/version-directive.js" %}"></script>
+
+    <script src="{% static "app/components/version/interpolate-filter.js" %}"></script>
+</head>
+
+<body ng-app="myApp">
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="headerCtrl">
+    <div class="navbar-header"><a class="navbar-brand" href="#!/">Audit</a>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            {#            <li ng-class="{'active' : activetab == '\\gallery'}"><a href="#!/gallery">Gallery</a></li>#}
+            {#            <li ng-class="{'active' : activetab == '\\booking'}"><a href="#!/booking">Booking</a></li>#}
+            {#            <li ng-class="{'active' : activetab == '\\activites'}"><a href="#!/activity">Activities</a></li>#}
+            {#            <li ng-class="{'active' : activetab == '\\contactus'}"><a  href="#!/contact">Contact Us</a></li>#}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">[["header.projects" | translate ]]
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="project in projects"><a
+                            ng-href="#!/project/[[$index+1]]">[[project.project_title]]</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-hide="globals.currentUser">
+            <li><a href="#!/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="globals.currentUser">
+            <li class='userloggedin'>
+                <a href="#!/user"> Welcome <b><i>[[globals.currentUser.username]]</i></b></a>
+            </li>
+            <li><a href="#!/login" ng-click="globals.currentUser = null">Log Out </a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-show="globals.currentUser">
+            <li class='userloggedin'>
+                    <div style="margin-top: 5px" ng-translate-language-select></div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" ng-if="flash">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+             ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+</div>
+<div ng-view></div>
+<script>
+    var static_url = '{{STATIC_URL}}'
+</script>
+</body>
+</html>
