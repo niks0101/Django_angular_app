@@ -183,9 +183,9 @@ app.controller('headerCtrl', ['UserService', 'ProjectService','$rootScope','$sco
     $scope.deleteUser = deleteUser;
     initController();
     function initController() {
-        loadCurrentUser();
-        loadAllUsers();
-        loadProjects();
+//         loadCurrentUser();
+//         loadAllUsers();
+//         loadProjects();
     }
     function  loadProjects() {
         ProjectService.GetAllProjects()
